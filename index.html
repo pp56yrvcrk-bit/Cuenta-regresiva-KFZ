@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cuenta regresiva con imagen</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #0f172a;
+      color: #f1f5f9;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    #countdown {
+      font-size: 3rem;
+      font-weight: bold;
+      background: #1e293b;
+      padding: 1rem 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 0 15px rgba(255,255,255,0.2);
+    }
+    #message {
+      display: none;
+      margin-top: 2rem;
+    }
+    #message img {
+      max-width: 300px;
+      border-radius: 1rem;
+      box-shadow: 0 0 10px rgba(255,255,255,0.2);
+    }
+  </style>
+</head>
+<body>
+  <h1>Doncs toca una altra pista? 🛞 </h1>
+  <div id="countdown">01:00:00</div>
+  <h1>No bloquegis la pantalla</h1>
+  <div id="message">9089GSH</div>
+
+  <script>
+    // Tiempo en segundos (1 hora = 3600)
+    let tiempo = 3600;
+    const countdown = document.getElementById("countdown");
+    const message = document.getElementById("message");
+
+    const timer = setInterval(() => {
+      const horas = Math.floor(tiempo / 3600);
+      const minutos = Math.floor((tiempo % 3600) / 60);
+      const segundos = tiempo % 60;
+
+      countdown.textContent =
+        `${String(horas).padStart(2, '0')}:${String(minutos).padStart(2, '0')}:${String(segundos).padStart(2, '0')}`;
+
+      tiempo--;
+
+      if (tiempo < 0) {
+        clearInterval(timer);
+        countdown.style.display = "none";
+        message.style.display = "block";
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
